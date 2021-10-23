@@ -10,6 +10,9 @@ namespace scarebox
 {
     public partial class InventoryBase : Panel
     {
+
+		// REDO THIS CLASS
+		
 		public IEnumerable<int> maxInvSlots = Enumerable.Range(1, 9);
         VirtualScrollPanel BaseCanvas;
 
@@ -24,8 +27,6 @@ namespace scarebox
 
 			var namePanel = Add.Panel("name");
 			namePanel.Add.Label("Inventory Bar");
-
-			//inventoryItems.SetClass("active");
 
 			BaseCanvas.Layout.AutoColumns = true;
 			BaseCanvas.Layout.ItemSize = new Vector2( 100, 100 );

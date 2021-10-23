@@ -104,6 +104,7 @@ namespace scarebox
 			return ItemsList.Remove(item);
 		}
 
+		// TODO GET THIS WORKING
 		public bool Drop(string itemName, int amount)
 		{
 			string item = itemName.ToLower();

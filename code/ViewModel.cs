@@ -14,6 +14,7 @@ namespace scarebox
 			AddCameraEffects( ref camSetup );
 		}
 
+		// REDO VM CAM EFFECTS
 		private void AddCameraEffects( ref CameraSetup camSetup )
 		{
 			Rotation = Local.Pawn.EyeRot;

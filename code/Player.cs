@@ -109,6 +109,7 @@ namespace scarebox
 
 		Rotation lastCameraRot = Rotation.Identity;
 
+		// REDO CAM SETUP
 		public override void PostCameraSetup( ref CameraSetup setup )
 		{
 			base.PostCameraSetup( ref setup );
@@ -143,6 +144,7 @@ namespace scarebox
 		float lean = 0;
 		float fov = 0;
 
+		// TODO REDO ALL CAM EFFECTS
 		private void AddCameraEffects( ref CameraSetup setup )
 		{
 			var speed = Velocity.Length.LerpInverse( 0, 320 );

@@ -5,7 +5,11 @@ namespace scarebox
 {
     public partial class ScareboxPlayer
     {
-		
+		/*
+			All Serverside commands go HERE!
+		*/
+
+		// Get Current Inventoy Contents
         [ServerCmd("inventory_getcurrent")]
 		public static void GetInventoryCurrent()
 		{
@@ -24,6 +28,7 @@ namespace scarebox
 			}
 		}
 
+		// Get Current Inventory Items
 		[ServerCmd("inventory_getcurrentitems")]
 		public static void GetInventoryCurrentItems()
 		{
@@ -40,6 +45,7 @@ namespace scarebox
 
 		}
 
+		// Remove an Item
 		[ServerCmd("inventory_removeitem")]
 		public static void RemoveInventoryItem(string item)
 		{
@@ -60,6 +66,7 @@ namespace scarebox
 
 		}
 
+		// Set an Item
 		[ServerCmd("inventory_setitem")]
 		public static void SetInventoryItem(string item, int amount)
 		{
@@ -79,5 +86,7 @@ namespace scarebox
 			}
 
 		}
+
+		// TODO ADD COMMAND TO DROP AN ITEM or ALL ITEMS
     }
 }

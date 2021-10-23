@@ -5,6 +5,9 @@ namespace scarebox
 {
     public partial class ScareboxPlayer
     {
+		/*
+			TODO GET THIS WORKING (maybe)
+		*/
 		private readonly List<ModelEntity> clothingList = new();
 
 		public ModelEntity AttachClothing(string model)

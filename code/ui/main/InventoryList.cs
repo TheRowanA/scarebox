@@ -25,7 +25,8 @@ namespace scarebox
 				var file = (string)data;
 				var panel = new ItemIcon(file, cell);
 				
-				var ItemPopup = new ItemPopup(file, this);
+				// Ill fix this later (like in the next 100 years)
+				//var ItemPopup = new ItemPopup(file, this);
 				//panel.AddEventListener( "onclick", () => ConsoleSystem.Run( "spawn", "models/" + file ) );
 				//panel.AddEventListener("onclick", () => ItemPopup.SetClass("active", cell.IsVisibleSelf));
 
