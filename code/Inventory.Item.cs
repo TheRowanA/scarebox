@@ -104,7 +104,7 @@ namespace scarebox
 			return ItemsList.Remove( item );
 		}
 
-		// TODO GET THIS WORKING
+		// Drops given item and amount***
 		public bool Drop( string itemName, int amount )
 		{
 			string item = itemName.ToLower();
@@ -113,15 +113,33 @@ namespace scarebox
 
 			if ( !ItemsList.ContainsKey( item ) ) return false;
 
-			//BaseItem entity = (BaseItem)BaseItem.Create( "scareb_item_" + item );
-			//entity.Position = player.EyeRot.Forward * 10.0f;
-			//entity.ApplyLocalImpulse(player.Velocity + player.EyeRot.Forward * 300.0f + Vector3.Up * 100.0f);
+			if ( Count( item ) < 1 ) return false;
 
+			if ( !SpawnItem( "scareb_item_" + item ) ) return false;
 
-			if ( Take( item, amount ) < 1 )
-			{
-				Remove( item );
-			}
+			Take( item, amount );
+
+			return true;
+		}
+
+		// Spawn Item at player eye trace
+		public bool SpawnItem( string itemName )
+		{
+			var attribute = Library.GetAttribute( itemName );
+
+			if ( attribute == null || !attribute.Spawnable ) return false;
+
+			var tr = Trace.Ray( player.EyePos, player.EyePos + player.EyeRot.Forward * 100 )
+				.UseHitboxes()
+				.Ignore( player )
+				.Size( 2 )
+				.Run();
+
+			var ent = Library.Create<Entity>( itemName );
+
+			ent.Position = tr.EndPos;
+			ent.Rotation = Rotation.From( new Angles( 0, player.EyeRot.Angles().yaw, 0 ) );
+
 			return true;
 		}
 

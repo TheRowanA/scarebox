@@ -87,6 +87,26 @@ namespace scarebox
 
 		}
 
-		// TODO ADD COMMAND TO DROP AN ITEM or ALL ITEMS
+		// Drop an Item
+		[ServerCmd("inventory_dropitem")]
+		public static void DropInventoryItem(string item, int amount)
+		{
+			var pawn = ConsoleSystem.Caller.Pawn;
+			if ( pawn == null ) return;
+
+			ScareboxInventory inventory = (ScareboxInventory)pawn.Inventory;
+			if ( inventory == null ) return;
+
+			if (amount < 1) return;
+
+			if ( inventory.Items.Drop( item, amount ) )
+			{
+				Log.Info( "Droped: " + item );
+			}
+			else
+			{
+				Log.Info( "Failed To Drop: " + item );
+			}
+		}
 	}
 }

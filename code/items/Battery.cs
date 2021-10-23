@@ -4,7 +4,7 @@ using Sandbox;
 namespace scarebox
 {
 
-	[Library( "scareb_item_battery" )]
+	[Library( "scareb_item_battery", Title = "Battery", Spawnable = true )]
 	[EditorModel( "models/citizen_props/coin01.vmdl" )]
 	partial class Battery : BaseItem
 	{

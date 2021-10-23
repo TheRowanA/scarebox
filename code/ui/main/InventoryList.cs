@@ -7,31 +7,31 @@ using Sandbox.UI.Tests;
 namespace scarebox
 {
 	[Library]
-    public partial class InventoryList : Panel
-    {
+	public partial class InventoryList : Panel
+	{
 		VirtualScrollPanel Canvas;
 
 		public InventoryList()
 		{
 			AddChild( out Canvas, "listcanvas" );
 
-			var namePanel = Add.Panel("name");
-			namePanel.Add.Label("Pockets");
+			var namePanel = Add.Panel( "name" );
+			namePanel.Add.Label( "Pockets" );
 
 			Canvas.Layout.AutoColumns = true;
 			Canvas.Layout.ItemSize = new Vector2( 100, 100 );
 			Canvas.OnCreateCell = ( cell, data ) =>
 			{
 				var file = (string)data;
-				var panel = new ItemIcon(file, cell);
-				
+				var panel = new ItemIcon( file, cell );
+
 				// Ill fix this later (like in the next 100 years)
 				//var ItemPopup = new ItemPopup(file, this);
 				//panel.AddEventListener( "onclick", () => ConsoleSystem.Run( "spawn", "models/" + file ) );
 				//panel.AddEventListener("onclick", () => ItemPopup.SetClass("active", cell.IsVisibleSelf));
 
 				panel.Style.BackgroundImage = Texture.Load( $"/ui/items/scareb_{file}.png", false );
-				
+
 			};
 
 		}
@@ -40,32 +40,32 @@ namespace scarebox
 		{
 			base.Tick();
 
-			if ( Parent.IsVisible)
+			if ( Parent.IsVisible )
 			{
 				var player = Local.Pawn;
-				if (player == null) return;
-				
+				if ( player == null ) return;
+
 
 				ScareboxInventory inventory = (ScareboxInventory)player.Inventory;
-				if (inventory == null) return;
+				if ( inventory == null ) return;
 
-				foreach (KeyValuePair<string, int> items in inventory.Items.GetItems())
+				foreach ( KeyValuePair<string, int> items in inventory.Items.GetItems() )
 				{
-					if (!Canvas.Data.Contains(items.Key) && items.Value >= 1)
+					if ( !Canvas.Data.Contains( items.Key ) && items.Value >= 1 )
 					{
-						Canvas.AddItem(items.Key);
+						Canvas.AddItem( items.Key );
 					}
 
-					if (Canvas.Data.Contains(items.Key) && items.Value < 1)
+					if ( Canvas.Data.Contains( items.Key ) && items.Value < 1 )
 					{
-						Canvas.Data.Remove(items.Key);
+						Canvas.Data.Remove( items.Key );
 						Canvas.Clear();
-						Log.Info(Canvas.Data.Contains(items.Key));
+						Log.Info( Canvas.Data.Contains( items.Key ) );
 					}
 
 				}
 			}
 		}
-			
-    }
+
+	}
 }
