@@ -5,14 +5,14 @@ using Sandbox.UI.Construct;
 namespace scarebox
 {
 	[Library]
-    public partial class ScareboxHud : HudEntity<RootPanel>
-    {
-        public ScareboxHud()
+	public partial class ScareboxHud : HudEntity<RootPanel>
+	{
+		public ScareboxHud()
 		{
-			if (!IsClient)
+			if ( !IsClient )
 				return;
 
-			RootPanel.StyleSheet.Load("/styles/hud.scss");
+			RootPanel.StyleSheet.Load( "/styles/hud.scss" );
 
 			RootPanel.AddChild<ChatBox>();
 			RootPanel.AddChild<Health>();
@@ -23,5 +23,5 @@ namespace scarebox
 			RootPanel.AddChild<InventoryMenu>();
 			RootPanel.AddChild<InventoryBar>();
 		}
-    }
+	}
 }

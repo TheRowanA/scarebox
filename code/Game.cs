@@ -18,9 +18,9 @@ namespace scarebox
 				Log.Info( "Scarebox Clientside Loaded!" );
 
 				// Register EVENTS
-				Event.Register("scareb.invchildadded");
-				Event.Register("scareb.inventorymenuopen");
-	        }
+				Event.Register( "scareb.invchildadded" );
+				Event.Register( "scareb.inventorymenuopen" );
+			}
 		}
 
 		public override void DoPlayerNoclip( Client player )
@@ -28,11 +28,11 @@ namespace scarebox
 			//Log.Info(player.UserId);
 
 			// TODO ADD PERM SYS
-			
-			if (!player.HasPermission("noclip"))
+
+			if ( !player.HasPermission( "noclip" ) )
 				return;
 
-			if (player.UserId !> 1)
+			if ( player.UserId! > 1 )
 				return;
 
 			base.DoPlayerNoclip( player );

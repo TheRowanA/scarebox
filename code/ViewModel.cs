@@ -3,8 +3,8 @@ using Sandbox;
 
 namespace scarebox
 {
-    partial class ScareboxViewModel : BaseViewModel
-    {
+	partial class ScareboxViewModel : BaseViewModel
+	{
 		float walkBob = 0;
 
 		public override void PostCameraSetup( ref CameraSetup camSetup )
@@ -35,5 +35,5 @@ namespace scarebox
 			Position += left * MathF.Sin( walkBob * 0.6f ) * speed * -0.5f;
 		}
 
-    }
+	}
 }

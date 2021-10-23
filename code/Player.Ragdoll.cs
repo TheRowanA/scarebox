@@ -2,10 +2,10 @@ using Sandbox;
 
 namespace scarebox
 {
-    partial class ScareboxPlayer
-    {
+	partial class ScareboxPlayer
+	{
 		[ClientRpc]
-		void BecomeRagdollOnClient(Vector3 velocity, DamageFlags damageFlags, Vector3 forcePos, Vector3 force, int bone)
+		void BecomeRagdollOnClient( Vector3 velocity, DamageFlags damageFlags, Vector3 forcePos, Vector3 force, int bone )
 		{
 			var ent = new ModelEntity();
 
@@ -61,5 +61,5 @@ namespace scarebox
 			ent.DeleteAsync( 10.0f );
 
 		}
-    }
+	}
 }

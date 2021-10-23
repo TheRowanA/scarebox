@@ -10,12 +10,12 @@ namespace scarebox
 		public readonly ItemInventory Items;
 		public ScareboxInventory( ScareboxPlayer player ) : base( player )
 		{
-			Items = new(player);
+			Items = new( player );
 		}
 
 		public override void OnChildAdded( Entity child )
 		{
-			Event.Run("scareb.invchildadded");
+			Event.Run( "scareb.invchildadded" );
 			base.OnChildAdded( child );
 		}
 
@@ -33,16 +33,16 @@ namespace scarebox
 		public override bool Add( Entity entity, bool makeActive = false )
 		{
 			var weapon = entity as BaseScareboxWeapon;
-			
+
 			if ( !entity.IsValid() )
 				return false;
 
 			if ( IsCarryingType( entity.GetType() ) )
 				return false;
 
-			if (weapon != null)
+			if ( weapon != null )
 			{
-				Sound.FromWorld("scareb.pickup_weapon", entity.Position);
+				Sound.FromWorld( "scareb.pickup_weapon", entity.Position );
 			}
 			return base.Add( entity, makeActive );
 		}

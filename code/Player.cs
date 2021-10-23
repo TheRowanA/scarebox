@@ -4,23 +4,23 @@ using Sandbox;
 
 namespace scarebox
 {
-    public partial class ScareboxPlayer : Player
-    {
+	public partial class ScareboxPlayer : Player
+	{
 		private TimeSince timeSinceDropped;
 		private DamageInfo lastDamage;
 
 		public new ScareboxInventory Inventory
 		{
-			get => (ScareboxInventory) base.Inventory;
+			get => (ScareboxInventory)base.Inventory;
 			private init => base.Inventory = value;
 		}
 
 		public ScareboxPlayer()
 		{
-			Inventory = new ScareboxInventory(this);
+			Inventory = new ScareboxInventory( this );
 		}
-		
-        public override void Respawn()
+
+		public override void Respawn()
 		{
 			SetModel( "models/citizen/citizen.vmdl" );
 
@@ -53,20 +53,20 @@ namespace scarebox
 			Inventory.DropActive();
 			Inventory.DeleteContents();
 
-			BecomeRagdollOnClient(Velocity, lastDamage.Flags, lastDamage.Position, lastDamage.Force, GetHitboxBone(lastDamage.HitboxIndex));
+			BecomeRagdollOnClient( Velocity, lastDamage.Flags, lastDamage.Position, lastDamage.Force, GetHitboxBone( lastDamage.HitboxIndex ) );
 
 			Camera = new SpectateRagdollCamera();
 
 			EnableAllCollisions = false;
 			EnableDrawing = false;
-			
+
 		}
 
-		public override void Simulate(Client cl)
+		public override void Simulate( Client cl )
 		{
-			base.Simulate(cl);
+			base.Simulate( cl );
 
-			if (Input.ActiveChild != null)
+			if ( Input.ActiveChild != null )
 			{
 				ActiveChild = Input.ActiveChild;
 			}
@@ -87,9 +87,9 @@ namespace scarebox
 			}
 
 			// Camera view switch
-			if (Input.Pressed(InputButton.View))
+			if ( Input.Pressed( InputButton.View ) )
 			{
-				if ( Camera is ThirdPersonCamera)
+				if ( Camera is ThirdPersonCamera )
 				{
 					Camera = new FirstPersonCamera();
 				}
@@ -174,13 +174,13 @@ namespace scarebox
 
 			setup.FieldOfView += fov;
 
-		//	var tx = new Sandbox.UI.PanelTransform();
-		//	tx.AddRotation( 0, 0, lean * -0.1f );
+			//	var tx = new Sandbox.UI.PanelTransform();
+			//	tx.AddRotation( 0, 0, lean * -0.1f );
 
-		//	Hud.CurrentPanel.Style.Transform = tx;
-		//	Hud.CurrentPanel.Style.Dirty(); 
+			//	Hud.CurrentPanel.Style.Transform = tx;
+			//	Hud.CurrentPanel.Style.Dirty(); 
 
 		}
 
-    }
+	}
 }
