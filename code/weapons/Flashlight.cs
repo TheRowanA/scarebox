@@ -2,10 +2,10 @@ using Sandbox;
 
 namespace scarebox
 {
-	[Library("scareb_flashlight", Title = "Flashlight")]
+	[Library( "scareb_flashlight", Title = "Flashlight" )]
 	[Hammer.EditorModel( "weapons/rust_pistol/rust_pistol.vmdl" )]
-    partial class Flashlight : BaseScareboxWeapon
-    {
+	partial class Flashlight : BaseScareboxWeapon
+	{
 		public override string ViewModelPath => "weapons/rust_flashlight/v_rust_flashlight.vmdl";
 		public override float SecondaryRate => 2.0f;
 
@@ -18,6 +18,8 @@ namespace scarebox
 		private bool LightEnabled { get; set; } = true;
 
 		TimeSince timeSinceLightToggled;
+		TimeSince timeSinceLightLife;
+		float preTimeSinceLightLife;
 
 		public override void Spawn()
 		{
@@ -89,12 +91,59 @@ namespace scarebox
 				}
 
 				timeSinceLightToggled = 0;
+
+				preTimeSinceLightLife = timeSinceLightLife;
 			}
+
+
+			if ( !LightEnabled )
+			{
+				timeSinceLightLife = preTimeSinceLightLife;
+			}
+
+
+			if ( timeSinceLightLife > 100.0f && LightEnabled )
+			{
+				LightEnabled = false;
+				Log.Info( "Flashlight battery" );
+
+				PlaySound( "flashlight-off" );
+
+				if ( worldLight.IsValid() )
+				{
+					worldLight.Enabled = LightEnabled;
+				}
+
+				if ( viewLight.IsValid() )
+				{
+					viewLight.Enabled = LightEnabled;
+				}
+			}
+
+			Log.Info( "Light Life = " + timeSinceLightLife );
 		}
 
 		public override bool CanReload()
 		{
-			return false;
+			if ( !Owner.IsValid() || !Input.Pressed( InputButton.Reload ) ) return false;
+
+			if ( timeSinceLightLife < 100.0f ) return false;
+
+			var inventory = (ScareboxInventory)Owner.Inventory;
+			if ( inventory.Items.Count( "battery" ) < 1 ) return false;
+
+			Log.Info( "Can Reload" );
+			return true;
+		}
+
+		public override void Reload()
+		{
+			var inventory = (ScareboxInventory)Owner.Inventory;
+
+			Log.Info( "Reloading" );
+			inventory.Items.Take( "battery", 1 );
+			timeSinceLightLife = 0;
+
 		}
 
 		public override void AttackSecondary()
@@ -210,5 +259,5 @@ namespace scarebox
 				}
 			}
 		}
-    }
+	}
 }
