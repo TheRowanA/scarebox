@@ -1,0 +1,119 @@
+inventorymenu
+{
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: 100px;
+    margin-left: 23%;
+    margin-right: 23%;
+    //max-width: 800px;
+    margin-bottom: 200px;
+    border-radius: 5px;
+    pointer-events: none;
+    transition: all 0.1s ease-out;
+    position: absolute;
+    background-color: rgba( black, 0.7 );
+    font-family: BonheurRoyale;
+    opacity: 0;
+
+    .tabs
+    {
+        font-size: 27px;
+        flex-shrink: 0;
+        color: white;
+        margin-bottom: 4px;
+        flex-direction: column;
+        margin: 10px;
+        width: 100px;
+        //background-color: royalblue;
+        label
+        {
+            pointer-events: none;
+        }
+
+        button
+        {
+            padding: 6px 0px;
+            margin-right: 10px;
+            font-size: 27px;
+            align-items: center;
+            font-weight: 600;
+            opacity: 0.2;
+            color: #fff;
+            cursor: pointer;
+            //border-radius: 5px;
+            label
+            {
+                text-shadow: 1px 1px 4px rgba( black, 0.2 );
+            }
+
+            &:hover
+            {
+                opacity: 1;
+            }
+
+            &.active
+            {
+                transform: scale( 1 );
+                opacity: 1;
+                color: #fff;
+                //	background-color: #fff;//( #3273eb, 0.2 );
+                //color: #3273eb;
+            }
+        }
+    }
+
+    .main
+    {
+        flex-grow: 1;
+        flex-direction: row;
+        position: relative;
+        left: -500px;
+        transition: all 0.3s ease-in;
+
+        .body
+        {
+            border-radius: 10px;
+            background-color: rgba( rgb(255, 0, 0), 0.7 );
+            flex-grow: 1;
+        }
+    }
+}
+
+
+.inventorymenuopen inventorymenu
+{
+    transition: all 0.2s ease-out;
+    pointer-events: all;
+    opacity: 1;
+    transform: scale( 1 );
+
+    .main
+    {
+        left: 0;
+        transition: all 0.1s ease-out;
+    }
+}
+
+.settingspage
+{
+    display: none;
+
+    &.active
+    {
+        display: flex;
+        opacity: 1;
+    }
+
+    .spanel
+    {
+        overflow: scroll;
+        width: 100%;
+        flex-grow: 1;
+        margin: 10px;
+        border-radius: 5px;
+        background-color: blue;
+
+    }
+}
