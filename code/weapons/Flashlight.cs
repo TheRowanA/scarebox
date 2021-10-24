@@ -106,7 +106,7 @@ namespace scarebox
 			if ( timeSinceLightLife > 100.0f && LightEnabled )
 			{
 				LightEnabled = false;
-				Log.Info( "Flashlight battery" );
+				Log.Info( "Flashlight flat battery" );
 
 				PlaySound( "flashlight-off" );
 
@@ -143,7 +143,7 @@ namespace scarebox
 		{
 			var inventory = (ScareboxInventory)Owner.Inventory;
 
-			Log.Info( "Reloading" );
+			Log.Info( "Reloading Taken 1 (battery) from Items" );
 			inventory.Items.Take( "battery", 1 );
 			timeSinceLightLife = 0;
 
