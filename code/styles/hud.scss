@@ -12,6 +12,20 @@ Health
 	align-items: center;
 }
 
+BatteryLevel
+{
+	position: absolute;
+	background-color: rgba( black, 0.5 );
+	right: 100px;
+	bottom: 48px;
+	font-size: 40px;
+	font-weight: bold;
+	color: rgb(255, 206, 70);
+	height: 80px;
+	padding: 0 20px;
+	align-items: center;
+}
+
 rootpanel
 {
     background-color: rgba( #333, 0 );

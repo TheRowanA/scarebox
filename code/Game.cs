@@ -10,7 +10,7 @@ namespace scarebox
 			if ( IsServer )
 			{
 				Log.Info( "Scarebox Serverside Loaded!" );
-				new ScareboxHud();
+				_ = new ScareboxHud();
 			}
 
 			if ( IsClient )

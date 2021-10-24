@@ -16,6 +16,7 @@ namespace scarebox
 
 			RootPanel.AddChild<ChatBox>();
 			RootPanel.AddChild<Health>();
+			RootPanel.AddChild<BatteryLevel>();
 			RootPanel.AddChild<NameTags>();
 			RootPanel.AddChild<VoiceList>();
 			RootPanel.AddChild<KillFeed>();
