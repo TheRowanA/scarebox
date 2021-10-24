@@ -96,9 +96,10 @@ namespace scarebox
 			}
 
 
-			if ( !LightEnabled )
+			if ( !LightEnabled && preTimeSinceLightLife < 100.0f)
 			{
 				timeSinceLightLife = preTimeSinceLightLife;
+				//Log.Info("FIRE");
 			}
 
 
@@ -118,9 +119,11 @@ namespace scarebox
 				{
 					viewLight.Enabled = LightEnabled;
 				}
+
+				preTimeSinceLightLife = timeSinceLightLife;
 			}
 
-			Log.Info( "Light Life = " + timeSinceLightLife );
+			//Log.Info( "Light Life = " + timeSinceLightLife );
 		}
 
 		public override bool CanReload()
@@ -132,7 +135,7 @@ namespace scarebox
 			var inventory = (ScareboxInventory)Owner.Inventory;
 			if ( inventory.Items.Count( "battery" ) < 1 ) return false;
 
-			Log.Info( "Can Reload" );
+			//Log.Info( "Can Reload" );
 			return true;
 		}
 
