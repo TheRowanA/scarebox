@@ -1,7 +1,9 @@
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using Sandbox.UI.Tests;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace scarebox
 {
@@ -11,18 +13,45 @@ namespace scarebox
 
 		public BatteryLevel()
 		{
-			batteryLabel = Add.Label( "100", "batterylevel" );
+			Add.Label("Battery", "battery-text");
+			batteryLabel = Add.Label( "0", "batterylevel" );
 		}
 
 		public override void Tick()
 		{
+			base.Tick();
+
+			Parent.SetClass("batterylevelshow", BatteryLevelShow());
+
 			var player = Local.Pawn;
 			if ( player == null ) return;
 
-			Entity ent = Entity.FindByName( "Flashlight" ); // DO THIS BETTER
-			if ( !player.Inventory.Contains( ent ) ) return;
+			var weapon = player.ActiveChild as Flashlight;
+			SetClass("active", weapon != null);
 
-			batteryLabel.Text = $"{ent.Name}";
+			if (weapon == null) return;
+			
+
+			var roundedLightLife = Math.Round(weapon.timeSinceLightLife);
+
+			if (roundedLightLife > 100) return;
+
+			batteryLabel.Text = $"{100 - roundedLightLife}";
+		}
+
+		private static bool BatteryLevelShow()
+		{
+			var player = Local.Pawn;
+			if ( player == null ) return false;
+
+			var inventory = player.Inventory;
+			if ( inventory == null ) return false;
+
+			if (inventory.Active == null) return false;
+
+			if (inventory.Active.ClassInfo.Name != "scareb_flashlight") return false;
+
+			return true;
 		}
 	}
 }

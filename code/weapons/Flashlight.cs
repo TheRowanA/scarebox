@@ -18,7 +18,7 @@ namespace scarebox
 		private bool LightEnabled { get; set; } = true;
 
 		TimeSince timeSinceLightToggled;
-		TimeSince timeSinceLightLife;
+		public TimeSince timeSinceLightLife { get; set; }
 		float preTimeSinceLightLife;
 
 		public override void Spawn()

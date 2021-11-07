@@ -10,13 +10,19 @@ Health
 	height: 80px;
 	padding: 0 20px;
 	align-items: center;
+	flex-direction: column;
+
+	.health-text
+	{
+		font-size: 15px;
+		font-weight: normal;
+	}
 }
 
 BatteryLevel
 {
 	position: absolute;
 	background-color: rgba( black, 0.5 );
-	right: 100px;
 	bottom: 48px;
 	font-size: 40px;
 	font-weight: bold;
@@ -24,6 +30,28 @@ BatteryLevel
 	height: 80px;
 	padding: 0 20px;
 	align-items: center;
+	flex-direction: column;
+
+	// Transitions
+	transition: all 0.3s ease-in;
+	transform: scale( 0.4 );
+	opacity: 0;
+	right: -500px;
+
+	.battery-text
+	{
+		//font-family: BonheurRoyale;
+		font-size: 15px;
+		font-weight: normal;
+	}
+}
+
+.batterylevelshow BatteryLevel
+{
+	transition: all 0.2s ease-out;
+	opacity: 1;
+	right: 100px;
+	transform: scale( 1 );
 }
 
 rootpanel
