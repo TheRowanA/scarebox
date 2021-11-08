@@ -32,7 +32,7 @@ namespace scarebox
 			if (weapon == null) return;
 			
 
-			var roundedLightLife = Math.Round(weapon.timeSinceLightLife);
+			var roundedLightLife = Math.Round(weapon.TimeSinceLightLife);
 
 			if (roundedLightLife > 100) return;
 

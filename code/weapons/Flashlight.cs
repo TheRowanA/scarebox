@@ -18,7 +18,7 @@ namespace scarebox
 		private bool LightEnabled { get; set; } = true;
 
 		TimeSince timeSinceLightToggled;
-		public TimeSince timeSinceLightLife { get; set; }
+		public TimeSince TimeSinceLightLife { get; set; }
 		float preTimeSinceLightLife;
 
 		public override void Spawn()
@@ -92,18 +92,18 @@ namespace scarebox
 
 				timeSinceLightToggled = 0;
 
-				preTimeSinceLightLife = timeSinceLightLife;
+				preTimeSinceLightLife = TimeSinceLightLife;
 			}
 
 
 			if ( !LightEnabled && preTimeSinceLightLife < 100.0f)
 			{
-				timeSinceLightLife = preTimeSinceLightLife;
+				TimeSinceLightLife = preTimeSinceLightLife;
 				//Log.Info("FIRE");
 			}
 
 
-			if ( timeSinceLightLife > 100.0f && LightEnabled )
+			if ( TimeSinceLightLife > 100.0f && LightEnabled )
 			{
 				LightEnabled = false;
 				Log.Info( "Flashlight flat battery" );
@@ -120,7 +120,7 @@ namespace scarebox
 					viewLight.Enabled = LightEnabled;
 				}
 
-				preTimeSinceLightLife = timeSinceLightLife;
+				preTimeSinceLightLife = TimeSinceLightLife;
 			}
 
 			//Log.Info( "Light Life = " + timeSinceLightLife );
@@ -130,7 +130,7 @@ namespace scarebox
 		{
 			if ( !Owner.IsValid() || !Input.Pressed( InputButton.Reload ) ) return false;
 
-			if ( timeSinceLightLife < 100.0f ) return false;
+			if ( TimeSinceLightLife < 100.0f ) return false;
 
 			var inventory = (ScareboxInventory)Owner.Inventory;
 			if ( inventory.Items.Count( "battery" ) < 1 ) return false;
@@ -145,7 +145,7 @@ namespace scarebox
 
 			Log.Info( "Reloading Taken 1 (battery) from Items" );
 			inventory.Items.Take( "battery", 1 );
-			timeSinceLightLife = 0;
+			TimeSinceLightLife = 0;
 
 		}
 
