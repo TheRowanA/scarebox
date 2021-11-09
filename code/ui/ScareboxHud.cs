@@ -7,6 +7,7 @@ namespace scarebox
 	[Library]
 	public partial class ScareboxHud : HudEntity<RootPanel>
 	{
+		public bool HudHidden { get; set; }
 		public ScareboxHud()
 		{
 			if ( !IsClient )
@@ -23,6 +24,8 @@ namespace scarebox
 			RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();
 			RootPanel.AddChild<InventoryMenu>();
 			RootPanel.AddChild<InventoryBar>();
+
 		}
+
 	}
 }

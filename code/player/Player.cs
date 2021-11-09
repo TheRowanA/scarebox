@@ -144,6 +144,8 @@ namespace scarebox
 		float lean = 0;
 		float fov = 0;
 
+		public static float ViewRoll { get; set; } = 3.5f;
+
 		// TODO REDO ALL CAM EFFECTS
 		private void AddCameraEffects( ref CameraSetup setup )
 		{
@@ -162,7 +164,7 @@ namespace scarebox
 			setup.Position += left * MathF.Sin( walkBob * 0.6f ) * speed * 1;
 
 			// Camera lean
-			lean = lean.LerpTo( Velocity.Dot( setup.Rotation.Right ) * 0.03f, Time.Delta * 15.0f );
+			lean = lean.LerpTo( Velocity.Dot( setup.Rotation.Right ) * 0.03f, Time.Delta * ViewRoll );
 
 			var appliedLean = lean;
 			appliedLean += MathF.Sin( walkBob ) * speed * 0.2f;

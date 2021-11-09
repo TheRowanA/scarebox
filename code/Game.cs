@@ -32,7 +32,7 @@ namespace scarebox
 			if ( !player.HasPermission( "noclip" ) )
 				return;
 
-			if ( player.UserId! > 1 )
+			if ( player.PlayerId! > 1 )
 				return;
 
 			base.DoPlayerNoclip( player );
